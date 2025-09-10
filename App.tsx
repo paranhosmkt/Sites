@@ -10,6 +10,8 @@ import EventsSection from './components/EventsSection';
 import PresidentMessageSection from './components/PresidentMessageSection';
 import AssociatesSection from './components/AssociatesSection';
 import TestimonialsSection from './components/TestimonialsSection';
+import CtaSection from './components/CtaSection';
+import InstagramFeedSection from './components/InstagramFeedSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 
@@ -27,6 +29,8 @@ const App: React.FC = () => {
         <BenefitsSection />
         <AssociatesSection />
         <TestimonialsSection />
+        <CtaSection />
+        <InstagramFeedSection />
         <NewsSection />
         <ContactSection />
       </main>

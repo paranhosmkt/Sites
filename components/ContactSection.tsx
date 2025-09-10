@@ -1,20 +1,11 @@
 import React, { useState } from 'react';
 
-const ContactInfoItem: React.FC<{icon: React.ReactNode, title: string, children: React.ReactNode}> = ({icon, title, children}) => (
-    <div className="flex items-start space-x-4">
-        <div className="text-blue-800 mt-1">{icon}</div>
-        <div>
-            <h4 className="font-bold text-gray-800">{title}</h4>
-            <p className="text-gray-600">{children}</p>
-        </div>
-    </div>
-);
-
 const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
+    subject: '',
     message: '',
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -31,59 +22,72 @@ const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contato" className="py-20 bg-white">
+    <section id="contato" className="py-20 bg-gray-800">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4 uppercase">
-            Contato
-          </h2>
-          <div className="w-24 h-1 bg-yellow-400 mx-auto"></div>
-        </div>
-        
-        <div className="flex flex-col lg:flex-row gap-12">
-            <div className="lg:w-1/2 space-y-8">
-                <ContactInfoItem icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>} title="Endereço">
-                    Florianópolis, SC - Brasil
-                </ContactInfoItem>
-                <ContactInfoItem icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>} title="E-mail">
-                    contato@cbpsc.com.br
-                </ContactInfoItem>
-                <ContactInfoItem icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>} title="Telefone">
-                    +55 (48) 99999-9999
-                </ContactInfoItem>
-            </div>
-            <div className="lg:w-1/2">
-                {isSubmitted ? (
-                    <div className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-md" role="alert">
-                        <p className="font-bold">Obrigado!</p>
-                        <p>Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.</p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          
+          {/* Left Column: Text Content */}
+          <div className="text-white text-left">
+            <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+              Como podemos te ajudar hoje?
+            </h2>
+            <div className="w-16 h-1 bg-green-500 mb-6"></div>
+            <p className="text-gray-300 text-lg mb-8 max-w-md">
+              Conecte-se com líderes do <strong>mercado</strong> e <strong>amplie</strong> sua rede de contatos conecte-se com líderes do mercado e amplie sua rede de contatos.
+            </p>
+            <a 
+              href="#sobre" 
+              className="inline-block bg-lime-600 text-white font-bold px-8 py-3 rounded-full hover:bg-lime-700 transition-all duration-300 transform hover:scale-105 uppercase text-sm tracking-wider"
+            >
+              Saiba mais!
+            </a>
+          </div>
+
+          {/* Right Column: Contact Form */}
+          <div className="relative">
+             {isSubmitted ? (
+                <div className="bg-white rounded-2xl p-8 lg:p-12 shadow-2xl text-center">
+                    <h3 className="text-2xl font-bold text-gray-800 mb-4">Obrigado!</h3>
+                    <p className="text-gray-600">Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.</p>
+                </div>
+            ) : (
+                <form 
+                    onSubmit={handleSubmit} 
+                    className="bg-white p-8 lg:p-12 rounded-2xl shadow-2xl space-y-5 relative"
+                >
+                    <div className="absolute top-0 left-8 w-16 h-1.5 bg-green-500 rounded-b-full"></div>
+                    
+                    <div>
+                        <label htmlFor="name" className="text-sm font-semibold text-gray-700">Nome Completo:</label>
+                        <input type="text" name="name" id="name" value={formData.name} onChange={handleChange} required className="w-full mt-2 px-4 py-3 bg-gray-100 border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"/>
                     </div>
-                ) : (
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        <div>
-                            <label htmlFor="name" className="sr-only">Nome</label>
-                            <input type="text" name="name" id="name" value={formData.name} onChange={handleChange} required placeholder="Nome" className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-                        </div>
-                        <div>
-                            <label htmlFor="email" className="sr-only">E-mail</label>
-                            <input type="email" name="email" id="email" value={formData.email} onChange={handleChange} required placeholder="E-mail" className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-                        </div>
-                        <div>
-                            <label htmlFor="phone" className="sr-only">Telefone</label>
-                            <input type="tel" name="phone" id="phone" value={formData.phone} onChange={handleChange} placeholder="Telefone" className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-                        </div>
-                        <div>
-                            <label htmlFor="message" className="sr-only">Mensagem</label>
-                            <textarea name="message" id="message" rows={5} value={formData.message} onChange={handleChange} required placeholder="Mensagem" className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-                        </div>
-                        <div className="text-left">
-                            <button type="submit" className="bg-blue-800 text-white font-bold px-8 py-3 rounded-md hover:bg-blue-900 transition-colors duration-300 uppercase text-sm tracking-wider">
-                                Enviar
-                            </button>
-                        </div>
-                    </form>
-                )}
-            </div>
+                    <div>
+                        <label htmlFor="email" className="text-sm font-semibold text-gray-700">E-mail:</label>
+                        <input type="email" name="email" id="email" value={formData.email} onChange={handleChange} required className="w-full mt-2 px-4 py-3 bg-gray-100 border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"/>
+                    </div>
+                    <div>
+                        <label htmlFor="phone" className="text-sm font-semibold text-gray-700">Telefone | Celular:</label>
+                        <input type="tel" name="phone" id="phone" value={formData.phone} onChange={handleChange} className="w-full mt-2 px-4 py-3 bg-gray-100 border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"/>
+                    </div>
+                     <div>
+                        <label htmlFor="subject" className="text-sm font-semibold text-gray-700">Assunto:</label>
+                        <input type="text" name="subject" id="subject" value={formData.subject} onChange={handleChange} required className="w-full mt-2 px-4 py-3 bg-gray-100 border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"/>
+                    </div>
+                    <div>
+                        <label htmlFor="message" className="text-sm font-semibold text-gray-700">Mensagem:</label>
+                        <textarea name="message" id="message" rows={5} value={formData.message} onChange={handleChange} required className="w-full mt-2 px-4 py-3 bg-gray-100 border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+                    </div>
+                    <p className="text-xs text-gray-500">
+                        Ao clicar em ENVIAR os dados inseridos por você serão utilizados para possibilitar o nosso contato e lhe oferecer serviços que possam ser do seu interesse ou da empresa a qual você representa.
+                    </p>
+                    <div className="text-left">
+                        <button type="submit" className="w-full bg-lime-600 text-white font-bold px-8 py-3 rounded-full hover:bg-lime-700 transition-colors duration-300 uppercase text-sm tracking-wider">
+                            Enviar
+                        </button>
+                    </div>
+                </form>
+            )}
+          </div>
         </div>
       </div>
     </section>
