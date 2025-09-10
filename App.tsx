@@ -1,40 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header';
-import HeroSection from './components/HeroSection';
-import InfoBarSection from './components/InfoBarSection';
-import AboutSection from './components/AboutSection';
-import EventBannerSection from './components/EventBannerSection';
-import BenefitsSection from './components/BenefitsSection';
-import NewsSection from './components/NewsSection';
-import EventsSection from './components/EventsSection';
-import PresidentMessageSection from './components/PresidentMessageSection';
-import AssociatesSection from './components/AssociatesSection';
-import TestimonialsSection from './components/TestimonialsSection';
-import CtaSection from './components/CtaSection';
-import InstagramFeedSection from './components/InstagramFeedSection';
-import ContactSection from './components/ContactSection';
-import FaqSection from './components/FaqSection';
 import Footer from './components/Footer';
+import HomePage from './pages/HomePage';
+import QuemSomosPage from './pages/QuemSomosPage';
 
 const App: React.FC = () => {
+  const [currentPage, setCurrentPage] = useState('home');
+
+  const handleNavigate = (page: string) => {
+    setCurrentPage(page);
+    window.scrollTo(0, 0); // Scroll to top on page change
+  };
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'quem-somos':
+        return <QuemSomosPage />;
+      case 'home':
+      default:
+        return <HomePage />;
+    }
+  };
+
   return (
     <div className="bg-white text-gray-800 antialiased">
-      <Header />
+      <Header currentPage={currentPage} onNavigate={handleNavigate} />
       <main>
-        <HeroSection />
-        <InfoBarSection />
-        <AboutSection />
-        <EventBannerSection />
-        <EventsSection />
-        <PresidentMessageSection />
-        <BenefitsSection />
-        <AssociatesSection />
-        <TestimonialsSection />
-        <CtaSection />
-        <InstagramFeedSection />
-        <NewsSection />
-        <ContactSection />
-        <FaqSection />
+        {renderPage()}
       </main>
       <Footer />
     </div>
