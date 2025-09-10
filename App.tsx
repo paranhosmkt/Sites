@@ -13,6 +13,7 @@ import TestimonialsSection from './components/TestimonialsSection';
 import CtaSection from './components/CtaSection';
 import InstagramFeedSection from './components/InstagramFeedSection';
 import ContactSection from './components/ContactSection';
+import FaqSection from './components/FaqSection';
 import Footer from './components/Footer';
 
 const App: React.FC = () => {
@@ -33,6 +34,7 @@ const App: React.FC = () => {
         <InstagramFeedSection />
         <NewsSection />
         <ContactSection />
+        <FaqSection />
       </main>
       <Footer />
     </div>
