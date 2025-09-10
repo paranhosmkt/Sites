@@ -9,6 +9,7 @@ import NewsSection from './components/NewsSection';
 import EventsSection from './components/EventsSection';
 import PresidentMessageSection from './components/PresidentMessageSection';
 import AssociatesSection from './components/AssociatesSection';
+import TestimonialsSection from './components/TestimonialsSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 
@@ -24,8 +25,9 @@ const App: React.FC = () => {
         <EventsSection />
         <PresidentMessageSection />
         <BenefitsSection />
-        <NewsSection />
         <AssociatesSection />
+        <TestimonialsSection />
+        <NewsSection />
         <ContactSection />
       </main>
       <Footer />

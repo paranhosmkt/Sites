@@ -1,32 +1,39 @@
 import React from 'react';
 
 const AssociateLogo: React.FC<{ imageUrl: string; name: string }> = ({ imageUrl, name }) => (
-    <div className="flex justify-center items-center p-4 bg-white rounded-lg shadow-md h-32 grayscale hover:grayscale-0 transition-all duration-300">
+    <div className="flex justify-center items-center p-4 transition-transform duration-300 transform hover:scale-110">
         <img src={imageUrl} alt={name} className="max-h-16 max-w-full" />
     </div>
 );
 
+const associates = [
+    { name: 'Visainvest', imageUrl: 'https://i.imgur.com/8QpZQmH.png' },
+    { name: 'Risetravel', imageUrl: 'https://i.imgur.com/fA4yP4S.png' },
+    { name: 'Iopoint', imageUrl: 'https://i.imgur.com/eB3sYqL.png' },
+    { name: 'Indikatore', imageUrl: 'https://i.imgur.com/eWv6lJj.png' },
+    { name: 'Eu.conecto', imageUrl: 'https://i.imgur.com/D8i9L4D.png' },
+    { name: 'YourAI', imageUrl: 'https://i.imgur.com/5V3z5kY.png' },
+    { name: 'Simplifique Portugal', imageUrl: 'https://i.imgur.com/rN9kC6x.png' },
+    { name: 'AG Assessoria', imageUrl: 'https://i.imgur.com/Qv9j5b3.png' },
+    { name: 'M Logo', imageUrl: 'https://i.imgur.com/v1hQk0T.png' },
+    { name: 'Ranzolin', imageUrl: 'https://i.imgur.com/sY2mD5t.png' },
+    { name: 'Raffinato', imageUrl: 'https://i.imgur.com/9O0Z3sR.png' },
+    { name: 'Virtual Office', imageUrl: 'https://i.imgur.com/gKj4f7N.png' },
+    { name: 'RegularizaMais', imageUrl: 'https://i.imgur.com/1n9sZ5c.png' },
+    { name: 'Simplifique Portugal 2', imageUrl: 'https://i.imgur.com/rN9kC6x.png' },
+    { name: 'VX Virtual', imageUrl: 'https://i.imgur.com/mP0t9sB.png' },
+];
 
 const AssociatesSection: React.FC = () => {
-  const associates = [
-    { name: 'Company 1', imageUrl: 'https://via.placeholder.com/150x60/cccccc/888888?text=Logo+1' },
-    { name: 'Company 2', imageUrl: 'https://via.placeholder.com/150x60/cccccc/888888?text=Logo+2' },
-    { name: 'Company 3', imageUrl: 'https://via.placeholder.com/150x60/cccccc/888888?text=Logo+3' },
-    { name: 'Company 4', imageUrl: 'https://via.placeholder.com/150x60/cccccc/888888?text=Logo+4' },
-    { name: 'Company 5', imageUrl: 'https://via.placeholder.com/150x60/cccccc/888888?text=Logo+5' },
-    { name: 'Company 6', imageUrl: 'https://via.placeholder.com/150x60/cccccc/888888?text=Logo+6' },
-  ];
-
   return (
-    <section id="associados" className="py-20 bg-gray-50">
+    <section id="associados" className="py-20 bg-white">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4 uppercase">
-            Nossos Associados
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            Conheça nossos associados
           </h2>
-          <div className="w-24 h-1 bg-yellow-400 mx-auto"></div>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-8 gap-y-12 items-center">
           {associates.map((associate, index) => (
             <AssociateLogo key={index} {...associate} />
           ))}
